@@ -1,7 +1,7 @@
 fun main()
 {
-    val input = readInput("Day03")
-    println("Sum: ${findBadge(input)}")
+    val input = readInput("Day01")
+    println("Biggest Sum: ${findBiggestSum(input)}")
 }
 
 fun sumAllNums(input : List<String>): Int{
@@ -58,94 +58,9 @@ fun findBiggestSum(input: List<String>): Int {
     return biggest
 
 }
-fun countPriorities(input : List<String>):Int{
-    var countScore = 0
-    var hasBeenFound = false
-    var storedValue = ""
-    for(i in input.indices)
-    {
-        var b = input[i].toCharArray()
-        var h = (input[i].length)/2
-        var secondHalf = input[i].substring(h)
-        //println(secondHalf)
-        for(x in 0 until h)
-        {
-            if(b[x].toString() != storedValue)
-            {
-                if(secondHalf.contains(b[x].toString()))
-                        {
-                            storedValue = b[x].toString()
-                            if(b[x].toString().lowercase() == b[x].toString())
-                            {
-                                var y = (b[x].code - 96)
-                                countScore += y
-                            }
-                            else
-                            {
-                                var y = (b[x].code - 38)
-                                countScore+= y
-                            }
-
-                        }
-            }
-        }
-        storedValue = ""
-    }
-    return countScore
+fun calculateScore(input : List<String>) : Int{
+    var totalScore = 0
+    val y = 2
+    val x = 1
+    val z = 3
 }
-fun findBadge(input: List<String>):Int{
-    var count = 0
-    var countScore = 0
-    var string1 = ""
-    var string2 = ""
-    var string3 = ""
-    var storedValue = ""
-    for(i in input.indices)
-    {
-        if(count == 0)
-        {
-            string1 = input[i]
-            count++
-        }
-        else if(count == 1)
-        {
-            string2 = input[i]
-            count++
-        }
-        else if(count == 2)
-        {
-            string3 = input[i]
-            count++
-            var x = string2
-            var y = string1.toCharArray()
-            var z = string3
-            var h = string1.length
-            for (m in 0 until h)
-            {
-                if(y[m].toString() != storedValue)
-                if((x.contains(y[m].toString())) && (z.contains(y[m].toString())))
-                {
-                    storedValue = y[m].toString()
-                    if(y[m].toString().lowercase() == y[m].toString())
-                    {
-                        var j = (y[m].code - 96)
-                        countScore += j
-                    }
-                    else
-                    {
-                        var j = (y[m].code - 38)
-                        countScore+= j
-                    }
-                }
-            }
-            storedValue = ""
-        }
-        else if(count == 3)
-        {
-            string1 = input[i]
-            count = 1
-        }
-    }
-    return countScore
-}
-
