@@ -1,7 +1,10 @@
 fun main()
 {
-    val input = readInput("Day01")
-    println("Biggest Sum: ${findBiggestSum(input)}")
+    val input = readInput("Day03")
+    //println("Biggest Sum: ${findBiggestSum(input)}")
+    //println("Score: ${calculateScoreP2(input)}")
+    println("Sum: ${findDoubleOccurance(input)}")
+
 }
 
 fun sumAllNums(input : List<String>): Int{
@@ -60,7 +63,143 @@ fun findBiggestSum(input: List<String>): Int {
 }
 fun calculateScore(input : List<String>) : Int{
     var totalScore = 0
-    val y = 2
-    val x = 1
-    val z = 3
+    var score = 0
+    for(i in input.indices){
+        val h = input[i].substring(0,1).lowercase()
+        val j = input[i].substring(2).lowercase()
+        if((h=="a" && j == "y")||(h=="b" && j =="z")||(h=="c" && j == "x"))
+        {
+            score+= 6
+        }
+        else if((h=="a" && j =="x")||(h=="b"&& j=="y")||(h=="c"&&j=="z"))
+        {
+            score += 3
+        }
+
+        if(j=="x")
+        {
+            totalScore++
+        }
+        else if(j =="y")
+        {
+            totalScore+=2
+        }
+        else if(j=="z")
+        {
+            totalScore+=3
+        }
+    }
+    return (score+totalScore)
+
+}
+fun calculateScoreP2(input: List<String>) : Int {
+    var totalScore = 0
+    var score = 0
+    for(i in input.indices)
+    {
+        val h = input[i].substring(0,1).lowercase()
+        val j = input[i].substring(2).lowercase()
+        if(j == "y")
+        {
+            totalScore += 3
+
+            if(h == "a")
+            {
+                score++
+            }
+            else if(h =="b")
+            {
+                score+=2
+            }
+            else if(h =="c")
+            {
+                score+=3
+            }
+        }
+        if(j == "z")
+        {
+            totalScore+= 6
+            if(h == "a")
+            {
+                score+= 2
+            }
+            else if(h =="b")
+            {
+                score+=3
+            }
+            else if(h =="c")
+            {
+                score++
+            }
+
+        }
+        if(j == "x")
+        {
+            if(h == "a")
+            {
+                score+= 3
+            }
+            else if(h =="b")
+            {
+                score++
+            }
+            else if(h =="c")
+            {
+                score+=2
+            }
+        }
+
+    }
+    return (totalScore+score)
+}
+fun findDoubleOccurance(input: List<String>):Int{
+    var total = 0
+    var count = 0
+    var countPlace = Int.MAX_VALUE
+    var alphabet = listOf("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t"
+            ,"u","v","w","x","y","z")
+    var alphabetCaps = listOf("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S",""
+            ,"U","V","W","X","Y","Z")
+    for(i in input.indices)
+    {
+        val h = input[i].length/2
+        val firstHalf = input[i].substring(0,h)
+        val secondHalf = input[i].substring(h)
+        for(i in 0 until h-1)
+        {
+            if(secondHalf.contains(firstHalf.substring(i,i+1)) && countPlace == 0)
+            {
+                countPlace = 1
+                if(firstHalf.substring(i,i+1).lowercase() == firstHalf.substring(i,i+1))
+                {
+                    for(x in 0 until 25)
+                    {
+                        count++
+                    if(firstHalf.substring(i,i+1) == alphabet[x])
+                    {
+                        total+=count
+                    }
+                    }
+                    count = 0
+
+                }
+                if(firstHalf.substring(i,i+1).lowercase() != firstHalf.substring(i,i+1))
+                {
+                    count = 26
+                    for(x in 0 until 25)
+                    {
+                        count++
+                        if(firstHalf.substring(i,i+1) == alphabetCaps[x])
+                        {
+                            total+= count
+                        }
+                    }
+                    count = 0
+                }
+
+            }
+        }
+        countPlace = 0
+    }
+    return total
 }
