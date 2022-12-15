@@ -1,7 +1,7 @@
 fun main()
 {
-    val input = readInput("Day04")
-    println("Pairs: ${findPairs(input)}")
+    val input = readInput("sentences")
+    println("Pairs: ${secretMessage(input)}")
 }
 
 fun sumAllNums(input : List<String>): Int{
@@ -202,18 +202,134 @@ fun findPairs(input: List<String>) : Int {
     return countPairs
 }
 fun secretMessage (input: List<String>): String{
-    var first = listOf("F","T","C","L","R","P","G","Q")
-    var two = listOf("")
-    var three = listOf("")
-    var four = listOf("")
-    var five = listOf("")
-    var six = listOf("")
-    var seven = listOf("")
-    var eight = listOf("")
-    var nine = listOf("")
-    for(i in 11 until 511)
+    var first = mutableListOf("F","T","C","L","R","P","G","Q")
+    var two = mutableListOf("N","Q","H","W","R","F","S","J")
+    var three = mutableListOf("F","B","H","W","P","M","Q")
+    var four = mutableListOf("V","S","T","D","F")
+    var five = mutableListOf("Q","L","D","W","V","F","Z")
+    var six = mutableListOf("Z","C","L","S")
+    var seven = mutableListOf("Z","B","M","V","D","F")
+    var eight = mutableListOf("T","J","B")
+    var nine = mutableListOf("Q","N","B","G","L","S","P","H")
+    for(i in input.indices)
     {
-return ""
+        var x = input[i].substring(5)
+        var y = input[i].substring(12)
+        var z = input[i].substring(0)
+
+        if(x.length == 14)
+        {
+            x = x.substring(0,2)
+            y = y.substring(1,2)
+            z = input[i].substring(18)
+        }
+        else
+        {
+            x = x.substring(0,1)
+            y = y.substring(0,1)
+            z = input[i].substring(17)
+        }
+        //println(y)
+        var hold = mutableListOf("")
+        for(h in 0 until x.toInt()) {
+            if(y.toInt() == 1){
+            hold += first[first.size-1]
+                first.removeAt(first.size - 1)
+            }
+            if(y.toInt() == 2){
+                hold += two[two.size-1]
+                two.removeAt(two.size - 1)}
+            if(y.toInt() == 3){
+                hold += three[three.size-1]
+                three.removeAt(three.size - 1)}
+            if(y.toInt() == 4){
+                hold += four[four.size-1]
+                four.removeAt(four.size - 1)}
+            if(y.toInt() == 5){
+                hold += five[five.size-1]
+                five.removeAt(five.size - 1)}
+            if(y.toInt() == 6){
+                hold += six[six.size-1]
+                six.removeAt(six.size - 1)}
+            if(y.toInt() == 7){
+                hold += seven[seven.size-1]
+                seven.removeAt(seven.size - 1)}
+            if(y.toInt() == 8){
+                hold += eight[eight.size-1]
+                eight.removeAt(eight.size - 1)}
+            if(y.toInt() == 9){
+                hold += nine[nine.size-1]
+                nine.removeAt(nine.size - 1)}
+        }
+        for(j in 0 until x.toInt() ) {
+            if(z.toInt() == 1){
+                first += hold[hold.size-1]
+            hold.removeAt(hold.size-1) }
+            if(z.toInt() == 2){
+                two += hold[hold.size-1]
+                hold.removeAt(hold.size-1)}
+            if(z.toInt() == 3){
+                three += hold[hold.size-1]
+                hold.removeAt(hold.size-1)}
+            if(z.toInt() == 4){
+                four += hold[hold.size-1]
+                hold.removeAt(hold.size-1)}
+            if(z.toInt() == 5){
+                five += hold[hold.size-1]
+                hold.removeAt(hold.size-1)}
+            if(z.toInt() == 6){
+                six += hold[hold.size-1]
+                hold.removeAt(hold.size-1)}
+            if(z.toInt() == 7){
+                seven += hold[hold.size-1]
+                hold.removeAt(hold.size-1)}
+            if(z.toInt() == 8){
+                eight += hold[hold.size-1]
+                hold.removeAt(hold.size-1)}
+            if(z.toInt() == 9){
+                nine += hold[hold.size-1]
+                hold.removeAt(hold.size-1)}
+        }/*
+        for(j in 0 until x.toInt() ) {
+            if(z.toInt() == 1){
+                first += hold[1]
+                hold.removeAt(1) }
+            if(z.toInt() == 2){
+                two += hold[1]
+                hold.removeAt(1)}
+            if(z.toInt() == 3){
+                three += hold[1]
+                hold.removeAt(1)}
+            if(z.toInt() == 4){
+                four += hold[1]
+                hold.removeAt(1)}
+            if(z.toInt() == 5){
+                five += hold[1]
+                hold.removeAt(1)}
+            if(z.toInt() == 6){
+                six += hold[1]
+                hold.removeAt(1)}
+            if(z.toInt() == 7){
+                seven += hold[1]
+                hold.removeAt(1)}
+            if(z.toInt() == 8){
+                eight += hold[1]
+                hold.removeAt(1)}
+            if(z.toInt() == 9){
+                nine += hold[1]
+                hold.removeAt(1)}
+                gives you the first part
+        }*/
     }
+
+    println(first)
+    println(two)
+    println(three)
+    println(four)
+    println(five)
+    println(six)
+    println(seven)
+    println(eight)
+    println(nine)
     return ""
 }
